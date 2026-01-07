@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Health Hub - Complete Guide to Your Dog's Health & Wellness</title>
+    <meta name="description" content="Comprehensive dog health guide covering nutrition, exercise, breed-specific care, superfoods, and expert veterinary tips. Create personalized health plans for your furry friend.">
+    <meta name="author" content="JSchwartz">
+    <meta name="keywords" content="dog health, pet wellness, dog nutrition, breed care, dog exercise, pet health tips, dog superfoods, veterinary care">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dog Health Hub - Your Complete Canine Wellness Guide">
+    <meta property="og:description" content="Expert dog health guidance with personalized health plans, breed-specific care, nutrition tips, and veterinary advice.">
+    <meta property="og:url" content="https://jschwartz99999.github.io/pawfect-pup-guide/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dog Health Hub">
+    <meta name="twitter:description" content="Expert dog health guidance with personalized health plans, breed-specific care, and nutrition tips.">
+
+    <!-- Theme Color for PWA -->
+    <meta name="theme-color" content="#16a34a">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐕</text></svg>">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        html { scroll-behavior: smooth; }
+
+        /* Skip link for accessibility */
+        .skip-link { position: absolute; top: -40px; left: 0; background: #16a34a; color: white; padding: 8px 16px; z-index: 100; border-radius: 0 0 4px 0; }
+        .skip-link:focus { top: 0; }
+
+        /* Focus styles */
+        button:focus, a:focus, input:focus, select:focus, textarea:focus { outline: 2px solid #16a34a; outline-offset: 2px; }
+
+        /* Card hover effects */
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+
+        /* Gradient text */
+        .gradient-text { background: linear-gradient(135deg, #16a34a, #ea580c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #15803d; }
+
+        /* Tab styles */
+        .breed-tab { transition: all 0.2s ease; }
+        .breed-tab.active { background: #16a34a; color: white; }
+        .breed-tab:not(.active):hover { background: #f0fdf4; }
+
+        /* Animate counter */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeInUp 0.6s ease forwards; }
+
+        /* Health plan step indicator */
+        .step-indicator { transition: all 0.3s ease; }
+        .step-indicator.active { background: #16a34a; color: white; }
+        .step-indicator.completed { background: #16a34a; color: white; }
+
+        /* Mobile menu */
+        @media (max-width: 768px) {
+            .mobile-menu { display: none; }
+            .mobile-menu.open { display: flex; }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200" role="banner">
+        <nav class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between" aria-label="Main navigation">
+            <a href="#" class="flex items-center gap-2 text-xl font-bold text-green-600 hover:text-green-700 transition-colors" aria-label="Dog Health Hub Home">
+                <i data-lucide="heart" class="w-6 h-6"></i>
+                <span>Dog Health Hub</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#health-tips" class="text-gray-600 hover:text-green-600 transition-colors">Health Tips</a>
+                <a href="#best-practices" class="text-gray-600 hover:text-green-600 transition-colors">Best Practices</a>
+                <a href="#superfoods" class="text-gray-600 hover:text-green-600 transition-colors">Superfoods</a>
+                <a href="#breeds" class="text-gray-600 hover:text-green-600 transition-colors">Breed Guide</a>
+                <button onclick="showHealthPlan()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    Health Plan
+                </button>
+            </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-600 hover:text-green-600" aria-label="Toggle mobile menu" aria-expanded="false">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 p-4 bg-white border-t md:hidden" role="menu">
+            <a href="#health-tips" class="text-gray-600 hover:text-green-600 py-2" role="menuitem">Health Tips</a>
+            <a href="#best-practices" class="text-gray-600 hover:text-green-600 py-2" role="menuitem">Best Practices</a>
+            <a href="#superfoods" class="text-gray-600 hover:text-green-600 py-2" role="menuitem">Superfoods</a>
+            <a href="#breeds" class="text-gray-600 hover:text-green-600 py-2" role="menuitem">Breed Guide</a>
+            <button onclick="showHealthPlan()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors w-full" role="menuitem">
+                Health Plan
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-gradient-to-br from-green-600 via-green-500 to-orange-500 text-white py-20 md:py-32" aria-label="Welcome to Dog Health Hub">
+            <div class="absolute inset-0 bg-black/10"></div>
+            <div class="relative max-w-7xl mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                    Your Dog's Health Journey<br>
+                    <span class="text-green-100">Starts Here</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-green-100 mb-10 max-w-3xl mx-auto">
+                    Comprehensive canine wellness guidance covering nutrition, exercise, breed-specific care, and expert veterinary tips
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="showHealthPlan()" class="px-8 py-4 bg-white text-green-600 font-semibold rounded-xl hover:bg-green-50 hover:scale-105 transition-all shadow-lg">
+                        Create Health Plan
+                    </button>
+                    <a href="#health-tips" class="px-8 py-4 bg-green-700/50 text-white font-semibold rounded-xl hover:bg-green-700/70 hover:scale-105 transition-all border-2 border-white/30">
+                        Explore Health Tips
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="relative bg-gradient-to-r from-green-600 to-orange-500 py-16" aria-label="Our impact statistics">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="relative max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8" role="list">
+                    <div class="text-center text-white p-6 rounded-xl hover:scale-105 transition-transform" role="listitem">
+                        <i data-lucide="heart" class="w-10 h-10 mx-auto mb-3" aria-hidden="true"></i>
+                        <div class="text-3xl md:text-4xl font-bold mb-1" data-counter="50000">0</div>
+                        <div class="text-green-100">Happy Dogs Helped</div>
+                    </div>
+                    <div class="text-center text-white p-6 rounded-xl hover:scale-105 transition-transform" role="listitem">
+                        <i data-lucide="users" class="w-10 h-10 mx-auto mb-3" aria-hidden="true"></i>
+                        <div class="text-3xl md:text-4xl font-bold mb-1" data-counter="15000">0</div>
+                        <div class="text-green-100">Pet Parents Served</div>
+                    </div>
+                    <div class="text-center text-white p-6 rounded-xl hover:scale-105 transition-transform" role="listitem">
+                        <i data-lucide="book-open" class="w-10 h-10 mx-auto mb-3" aria-hidden="true"></i>
+                        <div class="text-3xl md:text-4xl font-bold mb-1" data-counter="200">0</div>
+                        <div class="text-green-100">Health Tips Shared</div>
+                    </div>
+                    <div class="text-center text-white p-6 rounded-xl hover:scale-105 transition-transform" role="listitem">
+                        <i data-lucide="award" class="w-10 h-10 mx-auto mb-3" aria-hidden="true"></i>
+                        <div class="text-3xl md:text-4xl font-bold mb-1" data-counter="98" data-suffix="%">0</div>
+                        <div class="text-green-100">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Health Tips Section -->
+        <section id="health-tips" class="py-20 bg-gradient-to-b from-white to-green-50" aria-labelledby="health-tips-title">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 id="health-tips-title" class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Essential Health Tips</h2>
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto">Expert recommendations to keep your furry friend healthy and happy</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" role="list" id="healthTipsGrid">
+                    <!-- Tips will be inserted by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section id="best-practices" class="py-20 bg-gradient-to-b from-green-50 to-white" aria-labelledby="best-practices-title">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 id="best-practices-title" class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Best Practices for Dog Care</h2>
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto">Comprehensive guidelines for optimal canine health and happiness</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" role="list" id="bestPracticesGrid">
+                    <!-- Practices will be inserted by JavaScript -->
+                </div>
+                <div class="mt-12 p-6 bg-orange-50 rounded-xl border border-orange-200 text-center">
+                    <p class="text-orange-800">
+                        <strong>Remember:</strong> Every dog is unique! These are general guidelines that should be adapted to your specific dog's needs, breed characteristics, age, and health status.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Superfoods Section -->
+        <section id="superfoods" class="py-20 bg-gradient-to-b from-orange-50 via-white to-green-50" aria-labelledby="superfoods-title">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 id="superfoods-title" class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Superfoods for Dogs</h2>
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto">Nutrient-rich options that enhance canine wellness and energy levels</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list" id="superfoodsGrid">
+                    <!-- Superfoods will be inserted by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Breed Guide Section -->
+        <section id="breeds" class="py-20 bg-gradient-to-b from-green-50 to-white" aria-labelledby="breeds-title">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 id="breeds-title" class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Complete Breed Health Guide</h2>
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto">Comprehensive health information for 40+ dog breeds</p>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="mb-8 flex flex-col md:flex-row gap-4 justify-center items-center">
+                    <div class="relative w-full md:w-96">
+                        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" aria-hidden="true"></i>
+                        <input type="text"
+                               id="breedSearch"
+                               placeholder="Search breeds..."
+                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                               aria-label="Search dog breeds">
+                    </div>
+                    <select id="sizeFilter" class="px-4 py-3 border border-gray-300 rounded-lg focus:border-green-500" aria-label="Filter by size">
+                        <option value="">All Sizes</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="giant">Giant</option>
+                    </select>
+                </div>
+
+                <!-- Breed Tabs -->
+                <div id="breedTabs" class="flex flex-wrap gap-2 justify-center mb-8" role="tablist" aria-label="Dog breeds">
+                    <!-- Tabs will be inserted by JavaScript -->
+                </div>
+
+                <!-- Breed Details -->
+                <div id="breedDetails" class="bg-white rounded-2xl shadow-lg p-6 md:p-8" role="tabpanel">
+                    <p class="text-center text-gray-500">Select a breed to view health information</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section id="cta" class="py-20 bg-gradient-to-r from-green-600 to-orange-500" aria-label="Get started with your dog's health plan">
+            <div class="max-w-4xl mx-auto px-4 text-center text-white">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Give Your Dog the Best Life Possible</h2>
+                <p class="text-xl text-green-100 mb-8">Start implementing these health strategies today and watch your furry friend thrive!</p>
+                <button onclick="showHealthPlan()" class="px-8 py-4 bg-white text-green-600 font-semibold rounded-xl hover:bg-green-50 hover:scale-105 transition-all shadow-lg">
+                    Create Your Dog's Health Plan
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Health Plan Modal -->
+    <div id="healthPlanModal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="healthPlanTitle">
+        <div class="absolute inset-0 bg-black/50" onclick="hideHealthPlan()"></div>
+        <div class="relative min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+                    <h2 id="healthPlanTitle" class="text-xl font-bold text-gray-900">Create Your Dog's Health Plan</h2>
+                    <button onclick="hideHealthPlan()" class="p-2 text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100" aria-label="Close">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Step Indicators -->
+                <div class="p-4 border-b border-gray-200">
+                    <div class="flex justify-between items-center max-w-md mx-auto">
+                        <div class="step-indicator active w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-gray-200" data-step="1">1</div>
+                        <div class="flex-1 h-1 bg-gray-200 mx-2"><div class="step-progress h-full bg-green-500" style="width: 0%"></div></div>
+                        <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-gray-200" data-step="2">2</div>
+                        <div class="flex-1 h-1 bg-gray-200 mx-2"><div class="step-progress h-full bg-green-500" style="width: 0%"></div></div>
+                        <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-gray-200" data-step="3">3</div>
+                        <div class="flex-1 h-1 bg-gray-200 mx-2"><div class="step-progress h-full bg-green-500" style="width: 0%"></div></div>
+                        <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold bg-gray-200" data-step="4">4</div>
+                    </div>
+                </div>
+
+                <!-- Form Steps -->
+                <div class="p-6" id="healthPlanFormContainer">
+                    <!-- Step 1: Basic Info -->
+                    <div id="step1" class="form-step">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                            <i data-lucide="dog" class="w-5 h-5 text-green-600"></i>
+                            Basic Information
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="dogName" class="block text-sm font-medium text-gray-700 mb-1">Dog's Name *</label>
+                                <input type="text" id="dogName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-green-500" placeholder="e.g., Max">
+                            </div>
+                            <div>
+                                <label for="dogBreed" class="block text-sm font-medium text-gray-700 mb-1">Breed *</label>
+                                <select id="dogBreed" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-green-500">
+                                    <option value="">Select a breed</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="dogAge" class="block text-sm font-medium text-gray-700 mb-1">Age (years) *</label>
+                                    <input type="number" id="dogAge" min="0" max="25" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-green-500" placeholder="e.g., 3">
+                                </div>
+                                <div>
+                                    <label for="dogWeight" class="block text-sm font-medium text-gray-700 mb-1">Weight (lbs) *</label>
+                                    <input type="number" id="dogWeight" min="1" max="300" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-green-500" placeholder="e.g., 50">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Lifestyle -->
+                    <div id="step2" class="form-step hidden">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                            <i data-lucide="activity" class="w-5 h-5 text-green-600"></i>
+                            Lifestyle & Activity
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Activity Level *</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:border-green-500 transition-colors">
+                                        <input type="radio" name="activityLevel" value="low" class="mr-2">
+                                        <span>Low</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:border-green-500 transition-colors">
+                                        <input type="radio" name="activityLevel" value="moderate" class="mr-2">
+                                        <span>Moderate</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:border-green-500 transition-colors">
+                                        <input type="radio" name="activityLevel" value="high" class="mr-2">
+                                        <span>High</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="dietType" class="block text-sm font-medium text-gray-700 mb-1">Current Diet *</label>
+                                <select id="dietType" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-green-500">
+                                    <option value="">Select diet type</option>
+                                    <option value="dry">Dry Kibble</option>
+                                    <option value="wet">Wet Food</option>
+                                    <option value="raw">Raw Diet</option>
+                                    <option value="homemade">Homemade</option>
+                                    <option value="mixed">Mixed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Health History -->
+                    <div id="step3" class="form-step hidden">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                            <i data-lucide="clipboard-list" class="w-5 h-5 text-green-600"></i>
+                            Health History
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="vetFrequency" class="block text-sm font-medium text-gray-700 mb-1">Vet Visit Frequency *</label>
+                                <select id="vetFrequency" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-green-500">
+                                    <option value="">Select frequency</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="quarterly">Every 3 months</option>
+                                    <option value="biannual">Every 6 months</option>
+                                    <option value="annual">Annually</option>
+                                    <option value="rarely">Rarely</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="healthConcerns" class="block text-sm font-medium text-gray-700 mb-1">Any Health Concerns?</label>
+                                <textarea id="healthConcerns" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-green-500" placeholder="e.g., allergies, joint issues, etc."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Goals -->
+                    <div id="step4" class="form-step hidden">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                            <i data-lucide="target" class="w-5 h-5 text-green-600"></i>
+                            Your Goals
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">What are your main goals? (Select all that apply)</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:border-green-500">
+                                        <input type="checkbox" name="goals" value="weight" class="mr-2">
+                                        <span>Weight Management</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:border-green-500">
+                                        <input type="checkbox" name="goals" value="energy" class="mr-2">
+                                        <span>Improve Energy Levels</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:border-green-500">
+                                        <input type="checkbox" name="goals" value="coat" class="mr-2">
+                                        <span>Better Coat & Skin Health</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:border-green-500">
+                                        <input type="checkbox" name="goals" value="joints" class="mr-2">
+                                        <span>Joint Health Support</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:border-green-500">
+                                        <input type="checkbox" name="goals" value="longevity" class="mr-2">
+                                        <span>Overall Longevity</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="healthPlanResults" class="hidden">
+                        <!-- Results will be inserted by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div id="formNavigation" class="p-4 border-t border-gray-200 flex justify-between">
+                    <button onclick="prevStep()" id="prevBtn" class="px-6 py-2 text-gray-600 hover:text-gray-900 disabled:opacity-50" disabled>
+                        Previous
+                    </button>
+                    <button onclick="nextStep()" id="nextBtn" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 text-xl font-bold mb-4">
+                        <i data-lucide="heart" class="w-6 h-6 text-green-400"></i>
+                        <span>Dog Health Hub</span>
+                    </div>
+                    <p class="text-gray-400">Your trusted source for comprehensive dog health information and expert guidance.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Health Topics</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#health-tips" class="text-gray-400 hover:text-green-400 transition-colors">Health Tips</a></li>
+                        <li><a href="#best-practices" class="text-gray-400 hover:text-green-400 transition-colors">Best Practices</a></li>
+                        <li><a href="#superfoods" class="text-gray-400 hover:text-green-400 transition-colors">Superfoods</a></li>
+                        <li><a href="#breeds" class="text-gray-400 hover:text-green-400 transition-colors">Breed Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Popular Breeds</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#breeds" onclick="selectBreed('golden-retriever')" class="text-gray-400 hover:text-green-400 transition-colors">Golden Retriever</a></li>
+                        <li><a href="#breeds" onclick="selectBreed('german-shepherd')" class="text-gray-400 hover:text-green-400 transition-colors">German Shepherd</a></li>
+                        <li><a href="#breeds" onclick="selectBreed('labrador-retriever')" class="text-gray-400 hover:text-green-400 transition-colors">Labrador Retriever</a></li>
+                        <li><a href="#breeds" onclick="selectBreed('bulldog')" class="text-gray-400 hover:text-green-400 transition-colors">Bulldog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><button onclick="showHealthPlan()" class="text-gray-400 hover:text-green-400 transition-colors">Create Health Plan</button></li>
+                        <li><a href="#health-tips" class="text-gray-400 hover:text-green-400 transition-colors">Expert Tips</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Dog Health Hub. All information is for educational purposes only.</p>
+                <p class="mt-2 text-sm">Always consult with a licensed veterinarian for medical advice.</p>
+                <p class="mt-4 text-xs">
+                    <a href="https://github.com/JSchwartz99999/pawfect-pup-guide" class="text-green-400 hover:text-green-300" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50 bg-green-600 text-white" role="alert" aria-live="polite">
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- Screen reader announcements -->
+    <div id="srAnnounce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <script>
+        'use strict';
+
+        // ==================== DATA ====================
+        const healthTips = [
+            {
+                title: "Daily Exercise",
+                description: "Regular physical activity is crucial for your dog's physical and mental health. Aim for at least 30 minutes to 2 hours daily, depending on breed.",
+                icon: "activity",
+                category: "Physical Health",
+                color: "green"
+            },
+            {
+                title: "Dental Care",
+                description: "Brush your dog's teeth regularly and provide dental chews. Poor dental health can lead to serious health issues.",
+                icon: "smile",
+                category: "Preventive Care",
+                color: "blue"
+            },
+            {
+                title: "Mental Stimulation",
+                description: "Keep your dog's mind sharp with puzzle toys, training sessions, and new experiences. Mental exercise is as important as physical.",
+                icon: "brain",
+                category: "Mental Health",
+                color: "purple"
+            },
+            {
+                title: "Regular Checkups",
+                description: "Schedule annual vet visits for preventive care. Early detection of health issues can save your dog's life.",
+                icon: "stethoscope",
+                category: "Preventive Care",
+                color: "orange"
+            }
+        ];
+
+        const bestPractices = [
+            { title: "Grooming Essentials", icon: "scissors", category: "Care", color: "pink",
+              description: "Regular grooming maintains coat health and allows early detection of skin issues.",
+              tips: ["Brush coat 2-3 times weekly", "Bathe monthly or as needed", "Check ears weekly for infections"] },
+            { title: "Sleep & Rest", icon: "moon", category: "Wellness", color: "indigo",
+              description: "Dogs need 12-14 hours of sleep daily. Puppies and seniors need even more.",
+              tips: ["Provide comfortable bedding", "Establish consistent sleep schedule", "Create quiet sleeping area"] },
+            { title: "Exercise Guidelines", icon: "footprints", category: "Fitness", color: "green",
+              description: "Exercise needs vary by breed, age, and health status.",
+              tips: ["Start with walks, then add activities", "Avoid exercise in extreme heat", "Watch for signs of exhaustion"] },
+            { title: "Health Monitoring", icon: "heart-pulse", category: "Health", color: "red",
+              description: "Regular monitoring helps catch health issues early.",
+              tips: ["Check weight monthly", "Monitor eating and drinking habits", "Watch for behavior changes"] },
+            { title: "Feeding Schedule", icon: "utensils", category: "Nutrition", color: "orange",
+              description: "Consistent feeding times support digestive health and training.",
+              tips: ["Feed at same times daily", "Measure portions accurately", "Avoid feeding right before exercise"] },
+            { title: "Hydration Care", icon: "droplets", category: "Health", color: "blue",
+              description: "Fresh water should always be available. Dogs need about 1 oz of water per pound of body weight daily.",
+              tips: ["Clean water bowls daily", "Provide multiple water sources", "Monitor water intake"] },
+            { title: "Temperature Safety", icon: "thermometer", category: "Safety", color: "yellow",
+              description: "Dogs are sensitive to extreme temperatures. Never leave dogs in hot cars.",
+              tips: ["Limit outdoor time in extreme weather", "Provide shade and water outdoors", "Watch for overheating signs"] },
+            { title: "Socialization", icon: "users", category: "Behavior", color: "purple",
+              description: "Proper socialization prevents behavioral issues and anxiety.",
+              tips: ["Introduce to new people gradually", "Arrange playdates with other dogs", "Expose to various environments"] }
+        ];
+
+        const superfoods = [
+            { name: "Sweet Potatoes", icon: "heart", color: "orange",
+              benefits: "Rich in fiber, vitamins A, C, and B6. Great for digestive health and immune support.",
+              serving: "Cooked and mashed, 1-2 tablespoons per 10 lbs of body weight" },
+            { name: "Blueberries", icon: "heart", color: "indigo",
+              benefits: "Packed with antioxidants that support brain health and fight free radicals.",
+              serving: "Fresh or frozen, 2-3 berries for small dogs, up to 10 for large dogs" },
+            { name: "Salmon", icon: "heart", color: "pink",
+              benefits: "Excellent source of omega-3 fatty acids for skin, coat, and joint health.",
+              serving: "Cooked, boneless, 1 oz per 10 lbs of body weight, 1-2 times weekly" },
+            { name: "Pumpkin", icon: "heart", color: "orange",
+              benefits: "High in fiber and great for digestive health. Helps with both diarrhea and constipation.",
+              serving: "Plain canned (not pie filling), 1-4 tablespoons based on size" },
+            { name: "Carrots", icon: "heart", color: "orange",
+              benefits: "Low-calorie treat high in beta-carotene and fiber. Good for dental health.",
+              serving: "Raw or cooked, cut into appropriate sizes to prevent choking" },
+            { name: "Spinach", icon: "heart", color: "green",
+              benefits: "Iron-rich leafy green with vitamins A, C, and K. Supports overall health.",
+              serving: "Cooked and chopped, small amounts mixed with regular food" }
+        ];
+
+        const breeds = [
+            { name: "Golden Retriever", tab: "golden-retriever", size: "large", lifespan: "10-12 years", exercise: "High",
+              healthIssues: ["Hip dysplasia", "Elbow dysplasia", "Heart conditions"],
+              careTips: ["Regular hip screening", "Daily exercise essential", "Watch for weight gain"] },
+            { name: "German Shepherd", tab: "german-shepherd", size: "large", lifespan: "9-13 years", exercise: "High",
+              healthIssues: ["Hip dysplasia", "Degenerative myelopathy", "Bloat"],
+              careTips: ["Joint supplements recommended", "Mental stimulation crucial", "Regular grooming needed"] },
+            { name: "Labrador Retriever", tab: "labrador-retriever", size: "large", lifespan: "10-12 years", exercise: "High",
+              healthIssues: ["Hip dysplasia", "Obesity", "Eye conditions"],
+              careTips: ["Weight management essential", "Swimming great exercise", "Regular eye exams"] },
+            { name: "Bulldog", tab: "bulldog", size: "medium", lifespan: "8-10 years", exercise: "Low",
+              healthIssues: ["Breathing difficulties", "Skin fold infections", "Hip dysplasia"],
+              careTips: ["Avoid overheating", "Clean skin folds daily", "Limited exercise in heat"] },
+            { name: "Poodle", tab: "poodle", size: "medium", lifespan: "12-15 years", exercise: "Moderate",
+              healthIssues: ["Hip dysplasia", "Eye conditions", "Skin issues"],
+              careTips: ["Regular professional grooming", "Mental stimulation important", "Dental care crucial"] },
+            { name: "Beagle", tab: "beagle", size: "small", lifespan: "12-15 years", exercise: "High",
+              healthIssues: ["Epilepsy", "Hip dysplasia", "Ear infections"],
+              careTips: ["Keep on leash (strong scent drive)", "Regular ear cleaning", "Watch food intake"] },
+            { name: "Rottweiler", tab: "rottweiler", size: "large", lifespan: "8-10 years", exercise: "High",
+              healthIssues: ["Hip dysplasia", "Heart conditions", "Cancer"],
+              careTips: ["Early socialization essential", "Joint supplements", "Regular vet checkups"] },
+            { name: "Yorkshire Terrier", tab: "yorkshire-terrier", size: "small", lifespan: "12-15 years", exercise: "Low",
+              healthIssues: ["Dental issues", "Hypoglycemia", "Patellar luxation"],
+              careTips: ["Dental care essential", "Small frequent meals", "Coat requires daily care"] },
+            { name: "Boxer", tab: "boxer", size: "large", lifespan: "10-12 years", exercise: "High",
+              healthIssues: ["Heart conditions", "Cancer", "Hip dysplasia"],
+              careTips: ["Regular cardiac screening", "Avoid extreme temperatures", "High activity needs"] },
+            { name: "Dachshund", tab: "dachshund", size: "small", lifespan: "12-16 years", exercise: "Moderate",
+              healthIssues: ["Intervertebral disc disease", "Obesity", "Dental issues"],
+              careTips: ["Prevent jumping on/off furniture", "Weight management critical", "Support back when lifting"] },
+            { name: "Siberian Husky", tab: "siberian-husky", size: "medium", lifespan: "12-14 years", exercise: "Very High",
+              healthIssues: ["Eye conditions", "Hip dysplasia", "Skin conditions"],
+              careTips: ["Needs extensive exercise", "Escape artist - secure fencing", "Heavy shedding - regular brushing"] },
+            { name: "Great Dane", tab: "great-dane", size: "giant", lifespan: "7-10 years", exercise: "Moderate",
+              healthIssues: ["Bloat", "Heart disease", "Hip dysplasia"],
+              careTips: ["Elevated food bowls", "Avoid exercise after eating", "Joint supplements early"] },
+            { name: "Shih Tzu", tab: "shih-tzu", size: "small", lifespan: "10-16 years", exercise: "Low",
+              healthIssues: ["Breathing issues", "Eye problems", "Dental disease"],
+              careTips: ["Daily coat care", "Keep face clean", "Avoid heat exposure"] },
+            { name: "Doberman Pinscher", tab: "doberman-pinscher", size: "large", lifespan: "10-12 years", exercise: "High",
+              healthIssues: ["Dilated cardiomyopathy", "Von Willebrand's disease", "Hip dysplasia"],
+              careTips: ["Annual cardiac screening", "Mental stimulation needed", "Early training essential"] },
+            { name: "Australian Shepherd", tab: "australian-shepherd", size: "medium", lifespan: "12-15 years", exercise: "Very High",
+              healthIssues: ["Hip dysplasia", "Eye conditions", "Epilepsy"],
+              careTips: ["Needs job or activity", "Mental stimulation crucial", "Regular eye exams"] },
+            { name: "Cavalier King Charles Spaniel", tab: "cavalier-king-charles", size: "small", lifespan: "9-14 years", exercise: "Moderate",
+              healthIssues: ["Heart disease", "Syringomyelia", "Eye conditions"],
+              careTips: ["Regular cardiac checkups", "Gentle exercise", "Monitor for neurological signs"] },
+            { name: "French Bulldog", tab: "french-bulldog", size: "small", lifespan: "10-12 years", exercise: "Low",
+              healthIssues: ["Breathing difficulties", "Spinal issues", "Skin allergies"],
+              careTips: ["Avoid heat and humidity", "No strenuous exercise", "Clean facial folds"] },
+            { name: "Pembroke Welsh Corgi", tab: "pembroke-welsh-corgi", size: "small", lifespan: "12-15 years", exercise: "High",
+              healthIssues: ["Hip dysplasia", "Degenerative myelopathy", "Obesity"],
+              careTips: ["Weight management essential", "Back support important", "Regular exercise needed"] },
+            { name: "Border Collie", tab: "border-collie", size: "medium", lifespan: "12-15 years", exercise: "Very High",
+              healthIssues: ["Hip dysplasia", "Eye conditions", "Epilepsy"],
+              careTips: ["Needs mental and physical stimulation", "Training essential", "May develop neurotic behaviors if bored"] },
+            { name: "Bernese Mountain Dog", tab: "bernese-mountain-dog", size: "giant", lifespan: "7-10 years", exercise: "Moderate",
+              healthIssues: ["Cancer", "Hip dysplasia", "Bloat"],
+              careTips: ["Regular cancer screenings", "Joint supplements", "Avoid overexertion in heat"] }
+        ];
+
+        // ==================== STATE ====================
+        const STORAGE_KEY = 'dogHealthHub';
+        let currentStep = 1;
+        let selectedBreed = null;
+
+        // ==================== UTILITY FUNCTIONS ====================
+        function sanitizeHTML(str) {
+            if (typeof str !== 'string') return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            if (!toast || !toastMessage) return;
+
+            toast.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 z-50 ${
+                type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'
+            } text-white`;
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function announceToScreenReader(message) {
+            const announcer = document.getElementById('srAnnounce');
+            if (announcer) {
+                announcer.textContent = message;
+                setTimeout(() => { announcer.textContent = ''; }, 1000);
+            }
+        }
+
+        // ==================== RENDER FUNCTIONS ====================
+        function renderHealthTips() {
+            const container = document.getElementById('healthTipsGrid');
+            if (!container) return;
+
+            container.innerHTML = healthTips.map(tip => `
+                <article class="bg-white rounded-xl shadow-md p-6 card-hover" role="listitem">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-${tip.color}-500 to-${tip.color}-600 flex items-center justify-center mb-4">
+                        <i data-lucide="${tip.icon}" class="w-6 h-6 text-white" aria-hidden="true"></i>
+                    </div>
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-${tip.color}-100 text-${tip.color}-700 mb-2">${sanitizeHTML(tip.category)}</span>
+                    <h3 class="text-lg font-semibold mb-2">${sanitizeHTML(tip.title)}</h3>
+                    <p class="text-gray-600 text-sm">${sanitizeHTML(tip.description)}</p>
+                </article>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderBestPractices() {
+            const container = document.getElementById('bestPracticesGrid');
+            if (!container) return;
+
+            container.innerHTML = bestPractices.map(practice => `
+                <article class="bg-white rounded-xl shadow-md p-6 card-hover" role="listitem">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-${practice.color}-500 to-${practice.color}-600 flex items-center justify-center mb-4">
+                        <i data-lucide="${practice.icon}" class="w-6 h-6 text-white" aria-hidden="true"></i>
+                    </div>
+                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-${practice.color}-100 text-${practice.color}-700 mb-2">${sanitizeHTML(practice.category)}</span>
+                    <h3 class="text-lg font-semibold mb-2">${sanitizeHTML(practice.title)}</h3>
+                    <p class="text-gray-600 text-sm mb-3">${sanitizeHTML(practice.description)}</p>
+                    <ul class="text-sm text-gray-500 space-y-1">
+                        ${practice.tips.map(tip => `<li class="flex items-start gap-2"><span class="text-green-500 mt-1">•</span>${sanitizeHTML(tip)}</li>`).join('')}
+                    </ul>
+                </article>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderSuperfoods() {
+            const container = document.getElementById('superfoodsGrid');
+            if (!container) return;
+
+            container.innerHTML = superfoods.map(food => `
+                <article class="bg-white rounded-xl shadow-md p-6 card-hover" role="listitem">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i data-lucide="${food.icon}" class="w-5 h-5 text-${food.color}-500" aria-hidden="true"></i>
+                        <h3 class="text-lg font-semibold">${sanitizeHTML(food.name)}</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">${sanitizeHTML(food.benefits)}</p>
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <span class="text-xs font-medium text-gray-500 uppercase">Serving Suggestion</span>
+                        <p class="text-sm text-gray-700 mt-1">${sanitizeHTML(food.serving)}</p>
+                    </div>
+                </article>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderBreedTabs(filteredBreeds = breeds) {
+            const container = document.getElementById('breedTabs');
+            if (!container) return;
+
+            container.innerHTML = filteredBreeds.map(breed => `
+                <button onclick="selectBreed('${breed.tab}')"
+                        class="breed-tab px-4 py-2 rounded-lg text-sm font-medium border border-gray-200 ${selectedBreed === breed.tab ? 'active' : ''}"
+                        role="tab"
+                        aria-selected="${selectedBreed === breed.tab}"
+                        aria-controls="breedDetails">
+                    ${sanitizeHTML(breed.name)}
+                </button>
+            `).join('');
+        }
+
+        function renderBreedDetails(breedTab) {
+            const container = document.getElementById('breedDetails');
+            if (!container) return;
+
+            const breed = breeds.find(b => b.tab === breedTab);
+            if (!breed) {
+                container.innerHTML = '<p class="text-center text-gray-500">Select a breed to view health information</p>';
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="animate-fade-in">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900">${sanitizeHTML(breed.name)}</h3>
+                        <div class="flex gap-2 mt-2 md:mt-0">
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">${sanitizeHTML(breed.size)}</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">${sanitizeHTML(breed.lifespan)}</span>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">${sanitizeHTML(breed.exercise)} Exercise</span>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-red-50 rounded-xl p-5">
+                            <h4 class="font-semibold text-red-800 mb-3 flex items-center gap-2">
+                                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                                Common Health Issues
+                            </h4>
+                            <ul class="space-y-2">
+                                ${breed.healthIssues.map(issue => `
+                                    <li class="flex items-center gap-2 text-red-700">
+                                        <span class="w-2 h-2 bg-red-400 rounded-full"></span>
+                                        ${sanitizeHTML(issue)}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="bg-green-50 rounded-xl p-5">
+                            <h4 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                Care Tips
+                            </h4>
+                            <ul class="space-y-2">
+                                ${breed.careTips.map(tip => `
+                                    <li class="flex items-center gap-2 text-green-700">
+                                        <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+                                        ${sanitizeHTML(tip)}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            lucide.createIcons();
+        }
+
+        function selectBreed(breedTab) {
+            selectedBreed = breedTab;
+            renderBreedTabs(getFilteredBreeds());
+            renderBreedDetails(breedTab);
+
+            const breedData = breeds.find(b => b.tab === breedTab);
+            if (breedData) {
+                announceToScreenReader(`Selected ${breedData.name}`);
+            }
+        }
+
+        function getFilteredBreeds() {
+            const searchTerm = document.getElementById('breedSearch')?.value.toLowerCase() || '';
+            const sizeFilter = document.getElementById('sizeFilter')?.value || '';
+
+            return breeds.filter(breed => {
+                const matchesSearch = breed.name.toLowerCase().includes(searchTerm);
+                const matchesSize = !sizeFilter || breed.size === sizeFilter;
+                return matchesSearch && matchesSize;
+            });
+        }
+
+        function filterBreeds() {
+            const filtered = getFilteredBreeds();
+            renderBreedTabs(filtered);
+
+            if (selectedBreed && !filtered.find(b => b.tab === selectedBreed)) {
+                selectedBreed = null;
+                document.getElementById('breedDetails').innerHTML = '<p class="text-center text-gray-500">Select a breed to view health information</p>';
+            }
+        }
+
+        // ==================== STATS COUNTER ====================
+        function animateCounters() {
+            const counters = document.querySelectorAll('[data-counter]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.dataset.counter);
+                        const suffix = el.dataset.suffix || '';
+                        const duration = 2000;
+                        const startTime = performance.now();
+
+                        function update(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const easeOut = 1 - Math.pow(1 - progress, 3);
+                            const current = Math.floor(easeOut * target);
+
+                            el.textContent = current.toLocaleString() + suffix;
+
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                el.textContent = target.toLocaleString() + suffix;
+                            }
+                        }
+
+                        requestAnimationFrame(update);
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        // ==================== HEALTH PLAN MODAL ====================
+        function showHealthPlan() {
+            const modal = document.getElementById('healthPlanModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            currentStep = 1;
+            updateStepUI();
+            populateBreedSelect();
+
+            // Reset form
+            document.querySelectorAll('.form-step input, .form-step select, .form-step textarea').forEach(el => {
+                if (el.type === 'checkbox' || el.type === 'radio') {
+                    el.checked = false;
+                } else {
+                    el.value = '';
+                }
+            });
+
+            document.getElementById('healthPlanResults').classList.add('hidden');
+            document.getElementById('step1').classList.remove('hidden');
+            document.getElementById('formNavigation').classList.remove('hidden');
+        }
+
+        function hideHealthPlan() {
+            const modal = document.getElementById('healthPlanModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function populateBreedSelect() {
+            const select = document.getElementById('dogBreed');
+            if (!select) return;
+
+            select.innerHTML = '<option value="">Select a breed</option>' +
+                breeds.map(breed => `<option value="${breed.tab}">${sanitizeHTML(breed.name)}</option>`).join('');
+        }
+
+        function updateStepUI() {
+            // Update step indicators
+            document.querySelectorAll('.step-indicator').forEach(indicator => {
+                const step = parseInt(indicator.dataset.step);
+                indicator.classList.remove('active', 'completed');
+                if (step === currentStep) {
+                    indicator.classList.add('active');
+                } else if (step < currentStep) {
+                    indicator.classList.add('completed');
+                }
+            });
+
+            // Update progress bars
+            document.querySelectorAll('.step-progress').forEach((bar, index) => {
+                bar.style.width = index < currentStep - 1 ? '100%' : '0%';
+            });
+
+            // Show/hide steps
+            for (let i = 1; i <= 4; i++) {
+                const stepEl = document.getElementById(`step${i}`);
+                if (stepEl) {
+                    stepEl.classList.toggle('hidden', i !== currentStep);
+                }
+            }
+
+            // Update buttons
+            document.getElementById('prevBtn').disabled = currentStep === 1;
+            document.getElementById('nextBtn').textContent = currentStep === 4 ? 'Generate Plan' : 'Next';
+        }
+
+        function validateStep() {
+            const step = document.getElementById(`step${currentStep}`);
+            const requiredFields = step.querySelectorAll('[required]');
+            let valid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    valid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+
+            if (currentStep === 2) {
+                const activityLevel = document.querySelector('input[name="activityLevel"]:checked');
+                if (!activityLevel) {
+                    showToast('Please select an activity level', 'error');
+                    valid = false;
+                }
+            }
+
+            return valid;
+        }
+
+        function nextStep() {
+            if (!validateStep()) {
+                showToast('Please fill in all required fields', 'error');
+                return;
+            }
+
+            if (currentStep < 4) {
+                currentStep++;
+                updateStepUI();
+            } else {
+                generateHealthPlan();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        }
+
+        function generateHealthPlan() {
+            const dogName = document.getElementById('dogName').value;
+            const dogBreed = document.getElementById('dogBreed').value;
+            const dogAge = document.getElementById('dogAge').value;
+            const dogWeight = document.getElementById('dogWeight').value;
+            const activityLevel = document.querySelector('input[name="activityLevel"]:checked')?.value || 'moderate';
+            const dietType = document.getElementById('dietType').value;
+            const vetFrequency = document.getElementById('vetFrequency').value;
+            const goals = Array.from(document.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value);
+
+            const breedData = breeds.find(b => b.tab === dogBreed) || breeds[0];
+
+            // Hide form, show results
+            document.querySelectorAll('.form-step').forEach(step => step.classList.add('hidden'));
+            document.getElementById('formNavigation').classList.add('hidden');
+
+            const resultsContainer = document.getElementById('healthPlanResults');
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.innerHTML = `
+                <div class="animate-fade-in">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Health Plan for ${sanitizeHTML(dogName)}</h3>
+                        <p class="text-gray-600">${sanitizeHTML(breedData.name)} • ${dogAge} years old • ${dogWeight} lbs</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-blue-50 rounded-xl p-5">
+                            <h4 class="font-semibold text-blue-800 mb-3 flex items-center gap-2">
+                                <i data-lucide="activity" class="w-5 h-5"></i>
+                                Exercise Recommendations
+                            </h4>
+                            <p class="text-blue-700">${getExerciseRecommendation(activityLevel, breedData)}</p>
+                        </div>
+
+                        <div class="bg-orange-50 rounded-xl p-5">
+                            <h4 class="font-semibold text-orange-800 mb-3 flex items-center gap-2">
+                                <i data-lucide="utensils" class="w-5 h-5"></i>
+                                Nutrition Plan
+                            </h4>
+                            <p class="text-orange-700">${getNutritionPlan(dietType, dogWeight, dogAge)}</p>
+                        </div>
+
+                        <div class="bg-purple-50 rounded-xl p-5">
+                            <h4 class="font-semibold text-purple-800 mb-3 flex items-center gap-2">
+                                <i data-lucide="calendar" class="w-5 h-5"></i>
+                                Vet Visit Schedule
+                            </h4>
+                            <p class="text-purple-700">${getVetSchedule(vetFrequency, dogAge, breedData)}</p>
+                        </div>
+
+                        <div class="bg-red-50 rounded-xl p-5">
+                            <h4 class="font-semibold text-red-800 mb-3 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                                Breed-Specific Concerns
+                            </h4>
+                            <ul class="text-red-700 space-y-1">
+                                ${breedData.healthIssues.map(issue => `<li>• Watch for signs of ${issue}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        ${goals.length > 0 ? `
+                        <div class="bg-green-50 rounded-xl p-5">
+                            <h4 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+                                <i data-lucide="target" class="w-5 h-5"></i>
+                                Goal-Specific Tips
+                            </h4>
+                            <ul class="text-green-700 space-y-1">
+                                ${goals.map(goal => `<li>• ${getGoalTip(goal)}</li>`).join('')}
+                            </ul>
+                        </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <button onclick="hideHealthPlan()" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                            Close Plan
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            lucide.createIcons();
+            showToast(`Health plan created for ${dogName}!`, 'success');
+        }
+
+        function getExerciseRecommendation(level, breed) {
+            const recs = {
+                low: `${breed.name}s with low activity benefit from 20-30 minutes of gentle walks daily. Focus on mental stimulation with puzzle toys.`,
+                moderate: `Aim for 45-60 minutes of daily exercise for ${breed.name}. Mix walks with play sessions and training activities.`,
+                high: `${breed.name}s with high energy need 60-90+ minutes of vigorous exercise daily. Include running, fetch, and agility training.`
+            };
+            return recs[level] || recs.moderate;
+        }
+
+        function getNutritionPlan(diet, weight, age) {
+            const calories = Math.round(weight * 30 + 70);
+            const ageNote = parseInt(age) > 7 ? 'Consider senior-formula food with joint support.' : 'Maintain balanced nutrition appropriate for their life stage.';
+            return `Based on ${weight} lbs, ${diet} diet should provide approximately ${calories} calories daily. ${ageNote} Split meals into 2 portions for better digestion.`;
+        }
+
+        function getVetSchedule(frequency, age, breed) {
+            const ageInt = parseInt(age);
+            let schedule = '';
+            if (ageInt > 7) {
+                schedule = 'Senior dogs benefit from bi-annual checkups. ';
+            } else if (frequency === 'rarely') {
+                schedule = 'We recommend increasing vet visits to at least annually. ';
+            }
+            return `${schedule}For ${breed.name}s, regular screenings for ${breed.healthIssues[0].toLowerCase()} are especially important.`;
+        }
+
+        function getGoalTip(goal) {
+            const tips = {
+                weight: 'Measure food portions precisely and reduce treats to 10% of daily calories',
+                energy: 'Ensure adequate protein intake and consider adding omega fatty acids',
+                coat: 'Add fish oil supplements and ensure adequate zinc in the diet',
+                joints: 'Consider glucosamine/chondroitin supplements and low-impact exercise',
+                longevity: 'Focus on preventive care, dental health, and maintaining healthy weight'
+            };
+            return tips[goal] || 'Follow general wellness guidelines';
+        }
+
+        // ==================== MOBILE MENU ====================
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const isOpen = menu.classList.contains('open');
+            menu.classList.toggle('open');
+
+            const button = document.querySelector('[aria-label="Toggle mobile menu"]');
+            button.setAttribute('aria-expanded', !isOpen);
+        }
+
+        // ==================== INITIALIZATION ====================
+        function init() {
+            try {
+                // Render all sections
+                renderHealthTips();
+                renderBestPractices();
+                renderSuperfoods();
+                renderBreedTabs();
+
+                // Initialize Lucide icons
+                lucide.createIcons();
+
+                // Animate counters when visible
+                animateCounters();
+
+                // Set up breed filtering
+                document.getElementById('breedSearch')?.addEventListener('input', filterBreeds);
+                document.getElementById('sizeFilter')?.addEventListener('change', filterBreeds);
+
+                // Close mobile menu on link click
+                document.querySelectorAll('#mobileMenu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        document.getElementById('mobileMenu').classList.remove('open');
+                    });
+                });
+
+                // Close modal on Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        hideHealthPlan();
+                    }
+                });
+
+                console.log('Dog Health Hub initialized successfully');
+            } catch (e) {
+                console.error('Error initializing app:', e);
+            }
+        }
+
+        // Start the app
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
